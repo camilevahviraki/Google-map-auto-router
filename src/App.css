@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+}
+
+.form_Auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+} 
+
+input {
+  height: 40px;
+  width: 50%;
+  min-width: 300px;
+  margin: 20px 0;
+  padding-left: 12px;
+}
+
+#btn_submit {
+  background-color: rgba(24, 140, 194, 0.555);
+  padding: 10px;
+  border-radius: 2px;
+}
+
+.msgErr {
+  color: rgba(1, 54, 116, 0.979);
+}
