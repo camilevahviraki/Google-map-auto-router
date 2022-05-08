@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/handlebars/4.7.7/handlebars.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="locatorplus.css" rel="stylesheet">
+    <script src="locatorplus.js"></script>
+    <script>
+      const CONFIGURATION = {
+        "locations": [
+        ],
+        "mapOptions": {"center":{"lat":38.0,"lng":-100.0},"fullscreenControl":true,"mapTypeControl":false,"streetViewControl":false,"zoom":4,"zoomControl":true,"maxZoom":17},
+        "mapsApiKey": "YOUR_API_KEY_HERE",
+        "capabilities": {"input":true,"autocomplete":true,"directions":false,"distanceMatrix":true,"details":false}
+      };
+
+      function initMap() {
+        new LocatorPlus(CONFIGURATION);
+      }
+    </script>
+    <script id="locator-result-items-tmpl" type="text/x-handlebars-template">
+      {{#each locations}}
+        <li class="location-result" data-location-index="{{index}}">
+          <button class="select-location">
+            <h2 class="name">{{title}}</h2>
+          </button>
+          <div class="address">{{address1}}<br>{{address2}}</div>
+          {{#if travelDistanceText}}
+            <div class="distance">{{travelDistanceText}}</div>
+          {{/if}}
+        </li>
+      {{/each}}
+    </script>
+  </head>
+  <body>
+    <div id="map-container">
+      <div id="locations-panel">
+        <div id="locations-panel-list">
+          <header>
+            <h1 class="search-title">
+              <img src="https://fonts.gstatic.com/s/i/googlematerialicons/place/v15/24px.svg"/>
+              Find a location near you
+            </h1>
+            <div class="search-input">
+              <input id="location-search-input" placeholder="Enter your address or zip code">
+              <div id="search-overlay-search" class="search-input-overlay search">
+                <button id="location-search-button">
+                    <img class="icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/search/v11/24px.svg" alt="Search"/>
+                </button>
+              </div>
+            </div>
+          </header>
+          <div class="section-name" id="location-results-section-name">
+            All locations
+          </div>
+          <div class="results">
+            <ul id="location-results-list"></ul>
+          </div>
+        </div>
+      </div>
+      <div id="gmp-map"></div>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&callback=initMap&libraries=places,geometry&solution_channel=GMP_QB_locatorplus_v4_cABD" async defer></script>
+</body>
+</html>
